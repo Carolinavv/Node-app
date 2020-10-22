@@ -3,17 +3,19 @@ const app = express();
 const path = require('path');
 
 
+const indexRoute = require('./routes/index');
+
 //settings
 app.set('port', 3000);
+app.set('view engine','ejs');
+app.engine('html', require('ejs').renderFile);
+app.set('views', path.join(__dirname, 'views'));
 
 //middlewares
 
-
 //routes
+app.use(indexRoute);
 
-app.get('/', (req, res) =>{
-    res.sendFile( path.join( __dirname , '/views/index.html'));
-});
 
 //static files
 
